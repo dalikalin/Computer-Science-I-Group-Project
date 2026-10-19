@@ -1,0 +1,7 @@
+# Ignore compiled programs (the .exe files)
+*.exe
+
+# Ignore other compiler output files
+*.o
+*.obj
+*.out
