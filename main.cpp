@@ -62,7 +62,7 @@ void loadData(vector<Transaction>& list) {
 // Ask for an amount again and again until it is a number above 0
 double readAmount() {
     double amount;
-    cout << "Enter amount: ";
+    cout << "Enter amount: $";
 
     // If the user types letters, or a number that is 0 or less, ask again
     while (!(cin >> amount) || amount <= 0) {
@@ -177,7 +177,7 @@ int main() {
                 break;
             case 5:
                 saveData(transactions);
-                cout << "Data saved to transactions.txt. Goodbye!" << endl;
+                cout << "Goodbye!" << endl;
                 break;
             default:
                 cout << "Invalid choice. Please type a number from 1 to 5." << endl;
