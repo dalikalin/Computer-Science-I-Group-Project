@@ -1,0 +1,2 @@
+Income 500 2026-08-31 salary
+Expense 100 2026-10 clothes
