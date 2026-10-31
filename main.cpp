@@ -10,7 +10,7 @@ class Transaction {
 public:
     string type;         // "Income" or "Expense"
     double amount;       // the money amount
-    string date;         // written as YYYY-MM-DD
+    string date;         // written as dd-mm-yyyy
     string description;  // one word, e.g. Lunch or Bus_fare
 
     // The constructor copies the given values into the variables above
