@@ -137,24 +137,10 @@ void showSummary(vector<Transaction>& list) {
     cout << "Balance:        $" << balance << endl;
 }
 
-// calculate the total expenses
-double calculateTotalExpenses(vector<Transaction>& list) {
-    double total = 0;
-
-    for (Transaction t :list) {
-        if (t.type == "Expense") {
-            total += t.amount;
-        }
-    }
-    return total;
-}
-
-
-
 // MAIN: the program starts here
 int main() {
     vector<Transaction> transactions;   // the list of all income and expenses
-    int choice = 0;                       // the menu choice
+    int choice = 0;                     // the menu number the user types
 
     loadData(transactions);             // load old data from the file (if any)
 
@@ -193,7 +179,6 @@ int main() {
                 saveData(transactions);
                 cout << "Goodbye!" << endl;
                 break;
-
             default:
                 cout << "Invalid choice. Please type a number from 1 to 5." << endl;
         }

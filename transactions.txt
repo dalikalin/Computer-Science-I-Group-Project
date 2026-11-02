@@ -1,5 +1,0 @@
-Income 200 01-11-2026 Luch
-Expense 100 02-11-2026 Lunch
-Income 200 160 cd
-Income 200 01-11-2026 Lunch
-Expense 160 20-11-2026 Lunch
