@@ -137,6 +137,18 @@ void showSummary(vector<Transaction>& list) {
     cout << "Balance:        $" << balance << endl;
 }
 
+// Save: write all saving records to savings.txt
+void saveSavings(vector<Transaction>& savings) {
+    ofstream file("savings.txt");   // opens the files for writing
+
+    for (Transaction s : savings) {
+        file << "Saving " << s.amount << " | " << s.date << " | " << s.description << endl;
+    }
+    file.close();
+}
+
+// LOAD SAVINGS: read previous saving records
+
 // MAIN: the program starts here
 int main() {
     vector<Transaction> transactions;   // the list of all income and expenses
