@@ -148,14 +148,77 @@ void saveSavings(vector<Transaction>& savings) {
 }
 
 // LOAD SAVINGS: read previous saving records
+void loadSavings(vector<Transaction >& savings) {
+    ifstream file("savings.txt");
+
+    if (!file) {
+        return;
+    }
+
+    string type, date, description;
+    double amount;
+
+    while (file >> type >> amount >> date >> description) {
+        savings.push_back(Transaction(type, amount, date, description));
+    }
+    file.close();
+}
+
+// ADD SAVINGS: record a new saving
+void addSaving(vector<Transaction>& savings) {
+    string date;
+    string description;
+
+    double amount = readAmount();
+
+    cout << "Enter date (DD-MM-YYYY): ";
+    cin >> date;
+
+    cout << "Enter saving purpose (one word, e.g. Laptop): ";
+    cin >> description;
+
+    savings.push_back(Transaction("Saving", amount, date, description));
+
+    saveSavings(savings);
+
+    cout << "Saving added and saved sucessfully!" << endl;
+}
+
+// VIEW SAVINGS: display all saving records
+void viewSavings(vector<Transaction>& savings) {
+    if (savings.empty()) {
+        cout << "No savings records yet." << endl;
+        return;
+    }
+
+    double totalSavings = 0;
+
+    cout << "\n--- ALL SAVINGS ---" << endl;
+
+    int number = 1;
+    for (Transaction s : savings) {
+        cout << number << "."
+             << s.date << " | "
+             << "Saving | $"
+             << fixed << setprecision(2) << s.amount
+             << " | " << s.description << endl;
+
+        totalSavings += s.amount;
+        number++;
+    }
+
+    cout << "\nTotal Savings: $" << fixed << setprecision(2) << totalSavings << endl;
+}
 
 // MAIN: the program starts here
 int main() {
     vector<Transaction> transactions;   // the list of all income and expenses
+    vector<Transaction> savings;        // the list of all savings records
     int choice = 0;                     // the menu number the user types
 
     loadData(transactions);             // load old data from the file (if any)
-
+    loadSavings(savings);              // load old savings records from the file (if any)
+    
     // Repeat the menu until the user chooses 5
     do {
         cout << "\n====== STUDENT EXPENSE TRACKER ======" << endl;
@@ -163,7 +226,9 @@ int main() {
         cout << "2. Add Expense" << endl;
         cout << "3. View All Transactions" << endl;
         cout << "4. View Financial Summary" << endl;
-        cout << "5. Save and Exit" << endl;
+        cout << "5. Add Savings" << endl;
+        cout << "6. View Savings" << endl;
+        cout << "7. Save and Exit" << endl;
         cout << "Choose an option: ";
 
         // If the user types a letter instead of a number, treat it as invalid
@@ -188,13 +253,20 @@ int main() {
                 showSummary(transactions);
                 break;
             case 5:
+                addSaving(savings);
+                break;
+            case 6:
+                viewSavings(savings);
+                break;
+            case 7:
                 saveData(transactions);
+                saveSavings(savings);
                 cout << "Goodbye!" << endl;
                 break;
             default:
-                cout << "Invalid choice. Please type a number from 1 to 5." << endl;
+                cout << "Invalid choice. Please type a number from 1 to 7." << endl;
         }
-    } while (choice != 5);
+    } while (choice != 7);
 
     return 0;
 }

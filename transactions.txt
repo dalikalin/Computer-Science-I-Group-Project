@@ -1,1 +1,1 @@
-Income 500.00 02-11-2026 Salary
+Income 500 02-11-2026 Salary
