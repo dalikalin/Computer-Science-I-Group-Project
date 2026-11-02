@@ -149,90 +149,12 @@ double calculateTotalExpenses(vector<Transaction>& list) {
     return total;
 }
 
-// smart budgeting warning
-void showBudgetWarning(vector<Transaction>& list, double userBudget) {
 
-    if (userBudget <= 0) {
-        cout << "Please set your budget first." << endl;
-        return;
-    }
-
-    double totalExpenses = calculateTotalExpenses(list);
-
-    double percentage = (totalExpenses / userBudget) * 100;
-
-    cout << "\n--- Budget Status ---" << endl;
-    cout << "Budget: $" << fixed << setprecision(2) << userBudget << endl;
-    cout << "Total expenses: $" << fixed << setprecision(2) << totalExpenses << endl;
-    cout << "Budget used: " << fixed << setprecision(2) << percentage << "%" << endl;
-
-    if (percentage >= 100) {
-        cout << "Warning: You have exceeded your budget!" << endl;
-    } else if (percentage >= 80) {
-        cout << "Caution: You are close to exceeding your budget." << endl;
-    } else {
-        cout << "Good job! You are within your budget." << endl;
-    }
-}
-
-// set the budget
-void setBudget(double& userBudget) {
-
-    cout << "Enter your budget: $";
-
-    while (!(cin >> userBudget) || userBudget <= 0) {
-        cin.clear();
-        cin.ignore(1000, '\n');
-
-        cout << "Invalid amount. Please enter a number above 0: $";
-    }
-
-    cout << "Budget set to $" << fixed << setprecision(2) << userBudget << endl;
-}
-
-// Daily Spending limit calculator
-void dailySpendingLimit(vector<Transaction>& list, double userBudget) {
-
-    if (userBudget <= 0) {
-        cout << "Please set your budget first." << endl;
-        return;
-    }
-
-    int daysRemaining;
-
-    cout << "\nEnter the number of days remaining in the budget period: ";
-
-    while (!(cin >> daysRemaining) || daysRemaining <= 0) {
-        cin.clear();
-        cin.ignore(1000, '\n');
-
-        cout << "Invalid input. Please enter a positive number of days: ";
-    }
-
-    double totalExpenses = calculateTotalExpenses(list);
-
-    double remainingBudget = userBudget - totalExpenses;
-
-    cout << "\n--- Daily Spending Limit ---" << endl;
-    cout << "Budget: $" << fixed << setprecision(2) << userBudget << endl;
-    cout << "Total expenses: $" << fixed << setprecision(2) << totalExpenses << endl;
-    cout << "Remaining budget: $" << fixed << setprecision(2) << remainingBudget << endl;
-
-    if (remainingBudget <= 0) {
-        cout << "You have exceeded your budget. No daily spending limit available." << endl;
-    } else {
-        double dailyLimit = remainingBudget / daysRemaining;
-
-        cout << "Suggested daily limit = $" << fixed << setprecision(2) << dailyLimit << endl;
-    }
-
-}
 
 // MAIN: the program starts here
 int main() {
     vector<Transaction> transactions;   // the list of all income and expenses
-    int choice = 0;                    // the menu number the user types
-    double userBudget = 0;            // the user's budget
+    int choice = 0;                       // the menu choice
 
     loadData(transactions);             // load old data from the file (if any)
 
@@ -243,9 +165,7 @@ int main() {
         cout << "2. Add Expense" << endl;
         cout << "3. View All Transactions" << endl;
         cout << "4. View Financial Summary" << endl;
-        cout << "5. Set Spending Budget" << endl;
-        cout << "6. Daily Spending Limit Calculator" << endl;
-        cout << "7. Save and Exit" << endl;
+        cout << "5. Save and Exit" << endl;
         cout << "Choose an option: ";
 
         // If the user types a letter instead of a number, treat it as invalid
@@ -262,7 +182,6 @@ int main() {
                 break;
             case 2:
                 addTransaction(transactions, "Expense");
-                showBudgetWarning(transactions, userBudget);
                 break;
             case 3:
                 viewAll(transactions);
@@ -271,21 +190,14 @@ int main() {
                 showSummary(transactions);
                 break;
             case 5:
-                setBudget(userBudget);
-                break;
-            case 6:
-                dailySpendingLimit(transactions, userBudget);
-                break;
-
-            case 7:
                 saveData(transactions);
                 cout << "Goodbye!" << endl;
                 break;
 
             default:
-                cout << "Invalid choice. Please type a number from 1 to 7." << endl;
+                cout << "Invalid choice. Please type a number from 1 to 5." << endl;
         }
-    } while (choice != 7);
+    } while (choice != 5);
 
     return 0;
 }
