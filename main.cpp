@@ -142,7 +142,7 @@ void saveSavings(vector<Transaction>& savings) {
     ofstream file("savings.txt");   // opens the files for writing
 
     for (Transaction s : savings) {
-        file << "Saving " << s.amount << " | " << s.date << " | " << s.description << endl;
+        file << s.type << " " << s.amount << " " << s.date << " " << s.description << endl;
     }
     file.close();
 }

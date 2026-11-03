@@ -1,2 +1,5 @@
-Income 500 02-11-2026 Salary
-Expense 50 31-10-2026 clothes
+Income 500 31-08-2026 salary
+Income 100 03-11-2026 bonus
+Expense 50 03-11-2026 clothes
+Income 100 31-08-2026 salary
+Expense 100 31-08-2026 lunch
