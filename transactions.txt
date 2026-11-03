@@ -1,1 +1,2 @@
-Income 500.00 02-11-2026 Salary
+Income 500 02-11-2026 Salary
+Expense 50 31-10-2026 clothes
