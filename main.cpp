@@ -7,7 +7,7 @@ using namespace std;
 
 class Transaction {
 public:
-    string type;         // "Income" or "Expense" or "Saving"
+    string type;
     double amount;
     string date;
     string description;
@@ -21,13 +21,12 @@ public:
     }
 };
 
-// SAVE: write every transaction to transactions.txt (one per line)
+// write every transaction to transactions.txt (one per line)
 // The & means "use the original list", not a copy
 void saveData(vector<Transaction>& list) {
     ofstream file("transactions.txt");
 
     for (Transaction t : list) {
-        // Write the 4 parts on one line, separated by spaces
         file << t.type << " " << t.amount << " " << t.date << " " << t.description << endl;
     }
 
@@ -69,7 +68,7 @@ double readAmount() {
     return amount;
 }
 
-// ADD: ask for the details, then add one income or expense
+//ask for the details, then add one income or expense
 //& means work on the original list
 void addTransaction(vector<Transaction>& list, string type) {
     string date;
