@@ -12,7 +12,6 @@ public:
     string date;
     string description;
 
-    // The constructor copies the given values into the variables above
     Transaction(string t, double a, string d, string desc) {
         type = t;
         amount = a;
@@ -21,8 +20,6 @@ public:
     }
 };
 
-// write every transaction to transactions.txt (one per line)
-// The & means "use the original list", not a copy
 void saveData(vector<Transaction>& list) {
     ofstream file("transactions.txt");
 
@@ -68,7 +65,6 @@ double readAmount() {
     return amount;
 }
 
-//ask for the details, then add one income or expense
 //& means work on the original list
 void addTransaction(vector<Transaction>& list, string type) {
     string date;
