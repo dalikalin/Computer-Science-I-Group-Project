@@ -5,7 +5,6 @@
 #include <iomanip>
 using namespace std;
 
-// The Transaction class: one object holds ONE income or expense
 class Transaction {
 public:
     string type;         // "Income" or "Expense" or "Saving"
@@ -27,7 +26,6 @@ public:
 void saveData(vector<Transaction>& list) {
     ofstream file("transactions.txt");
 
-    // Go through every transaction in the list
     for (Transaction t : list) {
         // Write the 4 parts on one line, separated by spaces
         file << t.type << " " << t.amount << " " << t.date << " " << t.description << endl;
@@ -36,11 +34,10 @@ void saveData(vector<Transaction>& list) {
     file.close();
 }
 
-// LOAD: read transactions.txt and put each line into the list
+//read transactions.txt and put each line into the list
 void loadData(vector<Transaction>& list) {
     ifstream file("transactions.txt");
 
-    // If the file does not exist yet (first run), just stop
     if (!file) {
         return;
     }
@@ -64,7 +61,6 @@ double readAmount() {
     double amount;
     cout << "Enter amount: $";
 
-    // If the user types letters, or a number that is 0 or less, ask again
     while (!(cin >> amount) || amount <= 0) {
         cin.clear();               // clear the error state
         cin.ignore(1000, '\n');    // throw away the wrong input
@@ -74,7 +70,7 @@ double readAmount() {
 }
 
 // ADD: ask for the details, then add one income or expense
-//& means work on the original list. Without it, the function would add to a copy, and the new record would disappear when the function ends.
+//& means work on the original list
 void addTransaction(vector<Transaction>& list, string type) {
     string date;
     string description;
@@ -86,7 +82,7 @@ void addTransaction(vector<Transaction>& list, string type) {
 
     cout << "Enter description (one word, e.g. Lunch): ";
     cin >> description;
-    cin.ignore(1000, '\n');   // throw away anything else typed on this line
+    cin.ignore(1000, '\n');
 
     // Make the Transaction and add it to the end of the list
     list.push_back(Transaction(type, amount, date, description));
@@ -97,7 +93,7 @@ void addTransaction(vector<Transaction>& list, string type) {
     cout << type << " added and saved." << endl;
 }
 
-// VIEW: print every transaction
+// print every transaction
 void viewAll(vector<Transaction>& list) {
     // empty() is true when the list has nothing in it
     if (list.empty()) {
@@ -116,7 +112,7 @@ void viewAll(vector<Transaction>& list) {
     }
 }
 
-// SUMMARY: total income, total expenses, and what is left
+//total income, total expenses, and what is left
 void showSummary(vector<Transaction>& list) {
     double totalIncome = 0;
     double totalExpenses = 0;
@@ -139,7 +135,7 @@ void showSummary(vector<Transaction>& list) {
     cout << "Balance:        $" << balance << endl;
 }
 
-// Save: write all saving records to savings.txt
+//write all saving records to savings.txt
 void saveSavings(vector<Transaction>& savings) {
     ofstream file("savings.txt");
 
@@ -149,7 +145,7 @@ void saveSavings(vector<Transaction>& savings) {
     file.close();
 }
 
-// LOAD SAVINGS: read previous saving records
+//read previous saving records
 void loadSavings(vector<Transaction >& savings) {
     ifstream file("savings.txt");
 
@@ -168,7 +164,7 @@ void loadSavings(vector<Transaction >& savings) {
     file.close();
 }
 
-// ADD SAVINGS: record a new saving
+//record a new saving
 void addSaving(vector<Transaction>& savings) {
     string date;
     string description;
@@ -189,7 +185,7 @@ void addSaving(vector<Transaction>& savings) {
     cout << "Saving added and saved sucessfully!" << endl;
 }
 
-// VIEW SAVINGS: display all saving records
+// display all saving records
 void viewSavings(vector<Transaction>& savings) {
     if (savings.empty()) {
         cout << "No savings records yet." << endl;
@@ -215,14 +211,13 @@ void viewSavings(vector<Transaction>& savings) {
     cout << "\nTotal Savings: $" << fixed << setprecision(2) << totalSavings << endl;
 }
 
-// MAIN: the program starts here
 int main() {
-    vector<Transaction> transactions;   // the list of all income and expenses
-    vector<Transaction> savings;        // the list of all savings records
-    int choice = 0;                     // the menu number the user types
+    vector<Transaction> transactions;
+    vector<Transaction> savings;
+    int choice = 0;
 
-    loadData(transactions);             // load old data from the file (if any)
-    loadSavings(savings);              // load old savings records from the file (if any)
+    loadData(transactions);   // load old data from the file (if any)
+    loadSavings(savings);    // load old savings records from the file (if any)
 
     do {
         cout << "\n====== STUDENT EXPENSE TRACKER ======" << endl;
@@ -270,6 +265,5 @@ int main() {
                 cout << "Invalid choice. Please type a number from 1 to 7." << endl;
         }
     } while (choice != 7);
-
     return 0;
 }
