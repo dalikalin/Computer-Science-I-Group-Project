@@ -8,7 +8,7 @@ using namespace std;
 // The Transaction class: one object holds ONE income or expense
 class Transaction {
 public:
-    string type;         // "Income" or "Expense"
+    string type;         // "Income" or "Expense" or "Saving"
     double amount;       // the money amount
     string date;         // written as dd-mm-yyyy
     string description;  // one word, e.g. Lunch or Bus_fare
@@ -74,6 +74,7 @@ double readAmount() {
 }
 
 // ADD: ask for the details, then add one income or expense
+//& means work on the original list. Without it, the function would add to a copy, and the new record would disappear when the function ends.
 void addTransaction(vector<Transaction>& list, string type) {
     string date;
     string description;
@@ -90,7 +91,7 @@ void addTransaction(vector<Transaction>& list, string type) {
     // Make the Transaction and add it to the end of the list
     list.push_back(Transaction(type, amount, date, description));
 
-    // Save to the file right away, so nothing is lost
+    // Save the whole list to transactions.txt right away, so nothing is lost
     saveData(list);
 
     cout << type << " added and saved." << endl;
@@ -105,7 +106,8 @@ void viewAll(vector<Transaction>& list) {
     }
 
     cout << "\n--- All Transactions ---" << endl;
-    int number = 1;   // counts the lines: 1, 2, 3...
+    int number = 1;
+    //Reads as “for each t in list”. On each trip around, t is the next record. This is called a range-based for loop.
     for (Transaction t : list) {
         cout << number << ". " << t.date << " | " << t.type
              << " | $" << fixed << setprecision(2) << t.amount
@@ -155,7 +157,9 @@ void loadSavings(vector<Transaction >& savings) {
         return;
     }
 
-    string type, date, description;
+    string type;
+    string date;
+    string description;
     double amount;
 
     while (file >> type >> amount >> date >> description) {
@@ -177,6 +181,7 @@ void addSaving(vector<Transaction>& savings) {
     cout << "Enter saving purpose (one word, e.g. Laptop): ";
     cin >> description;
 
+    //Add Saving to savings list
     savings.push_back(Transaction("Saving", amount, date, description));
 
     saveSavings(savings);
@@ -219,7 +224,7 @@ int main() {
     loadData(transactions);             // load old data from the file (if any)
     loadSavings(savings);              // load old savings records from the file (if any)
     
-    // Repeat the menu until the user chooses 5
+    // Repeat the menu until the user chooses 7
     do {
         cout << "\n====== STUDENT EXPENSE TRACKER ======" << endl;
         cout << "1. Add Income" << endl;

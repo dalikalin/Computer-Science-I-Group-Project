@@ -3,3 +3,4 @@ Income 100 03-11-2026 bonus
 Expense 50 03-11-2026 clothes
 Income 100 31-08-2026 salary
 Expense 100 31-08-2026 lunch
+Income 100 31aug2026 lunch
