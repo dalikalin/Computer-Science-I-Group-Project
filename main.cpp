@@ -9,9 +9,9 @@ using namespace std;
 class Transaction {
 public:
     string type;         // "Income" or "Expense" or "Saving"
-    double amount;       // the money amount
-    string date;         // written as dd-mm-yyyy
-    string description;  // one word, e.g. Lunch or Bus_fare
+    double amount;
+    string date;
+    string description;
 
     // The constructor copies the given values into the variables above
     Transaction(string t, double a, string d, string desc) {
