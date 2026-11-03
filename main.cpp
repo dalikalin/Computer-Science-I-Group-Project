@@ -25,7 +25,7 @@ public:
 // SAVE: write every transaction to transactions.txt (one per line)
 // The & means "use the original list", not a copy
 void saveData(vector<Transaction>& list) {
-    ofstream file("transactions.txt");   // opens the file for writing
+    ofstream file("transactions.txt");
 
     // Go through every transaction in the list
     for (Transaction t : list) {
@@ -38,7 +38,7 @@ void saveData(vector<Transaction>& list) {
 
 // LOAD: read transactions.txt and put each line into the list
 void loadData(vector<Transaction>& list) {
-    ifstream file("transactions.txt");   // opens the file for reading
+    ifstream file("transactions.txt");
 
     // If the file does not exist yet (first run), just stop
     if (!file) {
@@ -141,7 +141,7 @@ void showSummary(vector<Transaction>& list) {
 
 // Save: write all saving records to savings.txt
 void saveSavings(vector<Transaction>& savings) {
-    ofstream file("savings.txt");   // opens the files for writing
+    ofstream file("savings.txt");
 
     for (Transaction s : savings) {
         file << s.type << " " << s.amount << " " << s.date << " " << s.description << endl;
@@ -223,8 +223,7 @@ int main() {
 
     loadData(transactions);             // load old data from the file (if any)
     loadSavings(savings);              // load old savings records from the file (if any)
-    
-    // Repeat the menu until the user chooses 7
+
     do {
         cout << "\n====== STUDENT EXPENSE TRACKER ======" << endl;
         cout << "1. Add Income" << endl;
@@ -243,7 +242,6 @@ int main() {
             choice = 0;
         }
 
-        // Run the part that matches the number
         switch (choice) {
             case 1:
                 addTransaction(transactions, "Income");
