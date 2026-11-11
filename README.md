@@ -1,4 +1,3 @@
-
 # Student Expense Tracker
 
 A C++ project that helps students keep track of their money. The student can record income, expenses, and savings, then see where the money went and how much is left. All records are saved in text files, so the data is still there the next time the program is opened.
@@ -8,7 +7,7 @@ The project has two versions that share the same logic:
 * **Console version** (`main.cpp`): a menu-driven program in the terminal.
 * **GUI version** (`guimain.cpp`): a window with tabs, buttons, text boxes, and tables, built with Dear ImGui and GLFW.
 
-## Features
+### Features
 
 * Add income and expenses (amount, date, description)
 * View all transactions
@@ -17,7 +16,7 @@ The project has two versions that share the same logic:
 * Save and load data with text files (`transactions.txt` and `savings.txt`)
 * Input validation: amounts must be above 0, and menu choices must be valid. The GUI version also checks the date format (DD-MM-YYYY).
 
-## C++ concepts used
+### C++ concepts used
 
 | Concept                     | Where it is used                                                                                                              |
 | --------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
@@ -29,7 +28,7 @@ The project has two versions that share the same logic:
 | `switch`                  | Chooses which function to run from the menu                                                                                   |
 | File handling (`fstream`) | `ofstream`writes records to a file and`ifstream`reads them back                                                           |
 
-## Project files
+### Project files
 
 | File                 | Purpose                                             |
 | -------------------- | --------------------------------------------------- |
@@ -42,7 +41,7 @@ The project has two versions that share the same logic:
 Each line in a data file is one record, written as: `Type Amount Date Description`
 (for example: `Expense 5.50 03-11-2026 Lunch`). The description must be one word.
 
-## How to run
+# How to run
 
 ### Console version
 
@@ -73,16 +72,16 @@ g++ guimain.cpp imgui/imgui.cpp imgui/imgui_draw.cpp imgui/imgui_tables.cpp imgu
 
 Run both versions from the project folder, so they use the same `transactions.txt` and `savings.txt`.
 
-## Team and contributions
+# Team and contributions
 
-| Member        | Contribution                                                                              |
-| ------------- | ----------------------------------------------------------------------------------------- |
-| Kun Mouyteang | [e.g. Transaction class, add/view transactions, input validation]                         |
-| Lin Dalika    | Implemented the code, built the graphical user interface (GUI), created Github repository |
+| Member        | Contribution                                                                               |
+| ------------- | ------------------------------------------------------------------------------------------ |
+| Kun Mouyteang |                                                                                            |
+| Lin Dalika    | Implemented the code, built the graphical user interface (GUI), created Github repository. |
 
-## Limitations and future improvements
+# Limitations and future improvements
 
 * The description must be one word.
 * Records cannot be edited or deleted yet.
 * Savings are tracked separately and do not change the balance.
-* Possible additions: spending by category, a monthly budget with a warning, and search by date.
+* Implement a better GUI.
