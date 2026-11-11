@@ -74,10 +74,10 @@ Run both versions from the project folder, so they use the same `transactions.tx
 
 # Team and contributions
 
-| Member        | Contribution                                                                               |
-| ------------- | ------------------------------------------------------------------------------------------ |
-| Kun Mouyteang |                                                                                            |
-| Lin Dalika    | Implemented the code, built the graphical user interface (GUI), created Github repository. |
+| Member        | Contribution                                                                                                                                                            |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Kun Mouyteang | Came up with the project idea and flowhchat, Implemented some functions in main.cpp, tested the final product, presented the overview of the project and core features. |
+| Lin Dalika    | Implemented the code in main.cpp, built the graphical user interface (GUI), created Github repository, presented system design and project demo.                        |
 
 # Limitations and future improvements
 
